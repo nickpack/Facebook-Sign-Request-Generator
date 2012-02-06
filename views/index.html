@@ -48,11 +48,13 @@
             <a class="close">×</a>
             <strong>Oh snap!</strong> Change a few things up and try submitting again.
         </div>
+        <% if (jsonPayload) { %>
         <div class="alert alert-success">
             <a class="close">×</a>
-            <strong>Well done!</strong> You successfully read this important alert message.
+            <strong>Success!</strong> The signed payload is below.
         </div>
-        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0">result signed request</li></ol></pre>
+        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><%= jsonPayload %></li></ol></pre>
+        <% } %>
     </div>
     <hr>
     <footer>
