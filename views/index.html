@@ -36,28 +36,28 @@
         <p class="lead">On top of the scaffolding, basic HTML elements are styled and enhanced with extensible classes to provide a fresh, consistent look and feel.</p>
     </header>
     <div class="row">
-        <form class="well" action="/" method="post">
+        <form class="well" action="/" method="post" id="generateSignature">
             <label>App Secret Key</label>
-            <input id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..."> <span class="help-inline">Don't know where it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
+            <input name="secretKey" id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..." value="<%= secretKey %>"> <span class="help-inline">Don't know where it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
             <label>Payload</label>
-            <textarea class="input-xlarge" id="payload" rows="3" placeholder="{ payload = 'hellow world' }"></textarea> <span class="help-inline">The payload you wish to sign and encode.</span><br/>
+            <textarea name="payload" class="input-xlarge" id="payload" rows="3" placeholder="{ payload = 'hellow world' }"><%= payload %></textarea> <span class="help-inline">The payload you wish to sign and encode.</span><br/>
             </label>
             <button type="submit" class="btn">Submit</button>
         </form>
+        <% if(errored) { %>
         <div class="alert alert-error">
-            <a class="close">×</a>
-            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+            <strong>Oh snap!</strong> <%= jsonPayload %>
         </div>
-        <% if (jsonPayload) { %>
+        <% } %>
+        <% if (!errored && jsonPayload) { %>
         <div class="alert alert-success">
-            <a class="close">×</a>
             <strong>Success!</strong> The signed payload is below.
         </div>
-        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><%= jsonPayload %></li></ol></pre>
+        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span style="color:black;"><%= jsonPayload %></span></li></ol></pre>
         <% } %>
     </div>
     <hr>
     <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; dmportella 2012</p>
     </footer>
 </div>
