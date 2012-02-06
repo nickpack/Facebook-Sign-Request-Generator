@@ -15,7 +15,6 @@ function main(app) {
     });
 }
 
-
 app.configure(function() {
     app.register('.html', require('ejs'));
     app.set('views', __dirname + '/views');

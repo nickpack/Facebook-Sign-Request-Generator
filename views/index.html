@@ -1,55 +1,61 @@
-<div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+<style type="text/css">
+    .com { color: #93a1a1; }
+    .lit { color: #195f91; }
+    .pun, .opn, .clo { color: #93a1a1; }
+    .fun { color: #dc322f; }
+    .str, .atv { color: #D14; }
+    .kwd, .linenums .tag { color: #1e347b; }
+    .typ, .atn, .dec, .var { color: teal; }
+    .pln { color: #48484c; }
+    
+    .prettyprint {
+      padding: 8px;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+    .prettyprint.linenums {
+      -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+         -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+              box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+    }
+    
+    /* Specify class=linenums on a pre to get line numbering */
+    ol.linenums {
+      margin: 0 0 0 33px; /* IE indents via margin-left */
+    } 
+    ol.linenums li {
+      padding-left: 12px;
+      color: #bebec5;
+      line-height: 18px;
+      text-shadow: 0 1px 0 #fff;
+    }
+</style>
+<div class="container">
+    <header class="jumbotron subhead" id="overview">
+        <h1>Facebook signed request generator</h1>
+        <p class="lead">On top of the scaffolding, basic HTML elements are styled and enhanced with extensible classes to provide a fresh, consistent look and feel.</p>
+    </header>
+    <div class="row">
+        <form class="well" action="/" method="post">
+            <label>App Secret Key</label>
+            <input id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..."> <span class="help-inline">Don't know where it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
+            <label>Payload</label>
+            <textarea class="input-xlarge" id="payload" rows="3" placeholder="{ payload = 'hellow world' }"></textarea> <span class="help-inline">The payload you wish to sign and encode.</span><br/>
+            </label>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="alert alert-error">
+            <a class="close">×</a>
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
         </div>
-      </div>
+        <div class="alert alert-success">
+            <a class="close">×</a>
+            <strong>Well done!</strong> You successfully read this important alert message.
+        </div>
+        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0">result signed request</li></ol></pre>
     </div>
-
-    <div class="container">
-
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <hr>
-
-      <footer>
+    <hr>
+    <footer>
         <p>&copy; Company 2012</p>
-      </footer>
-
-    </div> <!-- /container -->
+    </footer>
+</div>
