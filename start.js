@@ -10,14 +10,15 @@ var app = express.createServer();
 function main(app) {
     app.resource('/', {
         'get': function(req, res) {
+            res.local("jsonPayload", null);
             res.render('index.html');
         },
         'post': function(req,res) {
             var SignedRequest = require("signedrequest");
             SignedRequest.secret = req.body.secretKey;
             var jsonPayload = SignedRequest.encodeAndSign(req.body.payload);
-            
-            res.render('index.html', { payLoad: jsonPayload });
+            res.local("jsonPayload", jsonPayload);
+            res.render('index.html', );
         }
     });
 }
