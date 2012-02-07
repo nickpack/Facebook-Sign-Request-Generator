@@ -40,7 +40,7 @@
             <label>App Secret Key</label>
             <input name="secretKey" id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..." value="<%= secretKey %>"> <span class="help-inline">Don't know where it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
             <label>Payload</label>
-            <textarea name="payload" class="input-xlarge" id="payload" rows="3" placeholder="{ payload = 'hello world' }"><%= payload %></textarea> <span class="help-inline">The payload you wish to sign and encode.</span><br/>
+            <textarea name="payload" class="input-xlarge" id="payload" rows="3" placeholder="{ 'algorithm': 'HMAC-SHA256', payload = 'hello world' }"><%= payload %></textarea> <span class="help-inline">The payload you wish to sign and encode.</span><br/>
             </label>
             <button type="submit" class="btn">Submit</button>
         </form>
@@ -53,7 +53,7 @@
         <div class="alert alert-success">
             <strong>Success!</strong> The signed payload is below.
         </div>
-        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span style="color:black;"><%= jsonPayload %></span></li></ol></pre>
+        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span style="color:black"><a href="http://developers.facebook.com/tools/echo?signed_request=<%= jsonPayload %>">Test against facebook signed request echo tool.</a></span></li><li class="L1"><span style="color:black;"><%= jsonPayload %></span></li></ol></pre>
         <% } %>
     </div>
     <hr>

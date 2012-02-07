@@ -42,7 +42,7 @@ app.post('/', function(req,res,next) {
         }
         else
         {
-            var jsonPayload = SignedRequest.encodeAndSign(req.body.payload);
+            var jsonPayload = SignedRequest.encodeAndSign(JSON.parse(req.body.payload));
             res.local("errored", false);
             res.local("jsonPayload", jsonPayload);
         }
