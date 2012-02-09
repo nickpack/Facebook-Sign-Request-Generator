@@ -28,15 +28,15 @@ app.get('/', function(req, res, next) {
 app.post('/v1/generate', function(req, res, next) {
     res.contentType('application/json');
     try
-    {        
+    {
+        var SignedRequest = require("./signedrequest");
+        SignedRequest.secret = req.body.secretKey;
+        
         if(req.query.secretKey != undefined && req.query.secretKey.length > 0) {
-            var SignedRequest = require("./signedrequest");
-            SignedRequest.secret = req.query.secretKey;
-            
             var body = req.body;
             
             if(body && body != undefined && body != null) {
-                var jsonPayload = SignedRequest.encodeAndSign(body);
+                var jsonPayload = SignedRequest.encodeAndSign(JSON.stringify(body));
                 
                 var msg = { success : true, signedRequest : jsonPayload };
     		    res.send(JSON.stringify(msg));
