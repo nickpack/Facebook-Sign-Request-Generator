@@ -7,14 +7,12 @@ var sys = require('util'),
 var app = express.createServer();
 
 app.configure(function() {
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
     app.register('.html', require('ejs'));
     app.set('views', __dirname + '/views');
     app.set('view engine', 'html');
-    app.use(express.favicon());
-    app.use(express.methodOverride());
-    app.use(express.bodyParser());
-    // resource-router
-    app.use(app.router);
+    app.use(express.favicon());    
     app.use(express.static(__dirname + '/public', { maxAge: 604800000 }));
     app.use(express.staticCache());
 });
@@ -26,6 +24,43 @@ app.get('/', function(req, res, next) {
     res.local("jsonPayload", null);
     res.render('index.html');
 });
+
+app.post('/v1/generate', function(req, res, next) {
+    res.contentType('application/json');
+    try
+    {        
+        if(req.query.secretKey != undefined && req.query.secretKey.length > 0) {
+            var SignedRequest = require("./signedrequest");
+            SignedRequest.secret = req.query.secretKey;
+            
+            var body = req.body;
+            
+            if(body && body != undefined && body != null) {
+                var jsonPayload = SignedRequest.encodeAndSign(body);
+                
+                var msg = { success : true, signedRequest : jsonPayload };
+    		    res.send(JSON.stringify(msg));
+            }
+            else
+            {
+                var msg = { success : false, error : "Missing payload." };
+        	    res.send(JSON.stringify(msg));
+            }
+        }
+        else
+        {
+            var msg = { success : false, error : "Missing secret key." };
+            res.send(JSON.stringify(msg));
+        }
+            
+    }
+    catch(err)
+    {
+        var msg = { success : false, error : err };
+        res.send(JSON.stringify(msg));
+    }
+});
+
 app.post('/', function(req,res,next) {
     try
     {
