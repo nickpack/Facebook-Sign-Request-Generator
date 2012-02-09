@@ -59,6 +59,7 @@
         <div class="alert alert-info">
             <strong>Json api</strong><br/>
             <p>You can also call a json service call see the example below.</p>
+            <strong>Request</strong>
             <div class="well">
             POST /v1/generate?secretKey=23123213 HTTP/1.1<br/>
             Content-Type: application/json<br/>
@@ -78,6 +79,23 @@
                   }<br/>
                },<br/>
                "user_id": "111111111111111"<br/>
+            }<br/>
+            </div>
+            <strong>Response</strong>
+            <div class="well">
+            HTTP/1.1 200 OK<br/>
+            Content-Type: application/json<br/>
+            X-Powered-By: Express<br/>
+            Content-Length: 439<br/>
+            Connection: keep-alive<br/>
+            <br/>
+            {<br/>
+            "success" : true,<br/>
+            "signedRequest" : "FjsJSNfbIwjeIYJVGR3AL_CaGzD0EsxYmuqGQ0oRamg.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4c<br/>
+            GlyZXMiOjEzMDg5ODg4MDAsImlzc3VlZF9hdCI6MTMwODk4NTAxOCwib2F1dGhfdG9rZW4iOiIxMTExMTExMTExMTExMTF8Mi5BUUJBd<br/>
+            HRSbExWbndxTlBaLjM2MDAuMTExMTExMTExMS4xLTExMTExMTExMTExMTExMXxUNDl3M0Jxb1pVZWd5cHJ1NTFHcmE3MGhFRDgiLCJ1c<br/>
+            2VyIjp7ImNvdW50cnkiOiJkZSIsImxvY2FsZSI6ImVuX1VTIiwiYWdlIjp7Im1pbiI6MjF9fSwidXNlcl9pZCI6IjExMTExMTExMTExM<br/>
+            TExMSJ9"<br/>
             }<br/>
             </div>
         </div>
