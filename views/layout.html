@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Facebook - Signed request generatorr</title>
-    <meta name="description" content="generate valid signed request for testing with facebook.">
+    <title>Facebook - Signed request generator</title>
+    <meta name="description" content="generate valid signed requests for testing with facebook.">
     <meta name="author" content="daniel portella">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -13,23 +13,31 @@
 
     <!-- Le styles -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <link href="/css/fbsrg.css" rel="stylesheet">
   </head>
 
   <body>
-  <a href="https://github.com/dmportella/Facebook-Sign-Request-Generator"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
-    <%- body %>
-  </body>
+  <a href="https://github.com/dmportella/Facebook-Sign-Request-Generator"><img style="position: absolute; top: 0; left: 0; border: 0;z-index:1234567890;" src="https://a248.e.akamai.net/assets.github.com/img/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+   <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">FB SRG</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Generator</a></li>
+            <li><a href="https://github.com/dmportella/Facebook-Sign-Request-Generator">Source</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+     <div class="container">
+        <div class="content">
+          <%- body %>
+        </div>
+    </div> 
+    <hr />
+    <footer>
+        <p>&copy; dmportella 2012</p>
+    </footer> 
+</body>
 </html>

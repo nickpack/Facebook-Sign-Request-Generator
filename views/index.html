@@ -1,110 +1,67 @@
-<style type="text/css">
-    .com { color: #93a1a1; }
-    .lit { color: #195f91; }
-    .pun, .opn, .clo { color: #93a1a1; }
-    .fun { color: #dc322f; }
-    .str, .atv { color: #D14; }
-    .kwd, .linenums .tag { color: #1e347b; }
-    .typ, .atn, .dec, .var { color: teal; }
-    .pln { color: #48484c; }
-    
-    .prettyprint {
-      padding: 8px;
-      background-color: #f7f7f9;
-      border: 1px solid #e1e1e8;
-    }
-    .prettyprint.linenums {
-      -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-         -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-              box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
-    }
-    
-    /* Specify class=linenums on a pre to get line numbering */
-    ol.linenums {
-      margin: 0 0 0 33px; /* IE indents via margin-left */
-    } 
-    ol.linenums li {
-      padding-left: 12px;
-      color: #bebec5;
-      line-height: 18px;
-      text-shadow: 0 1px 0 #fff;
-    }
-</style>
-<div class="container">
-    <header class="jumbotron subhead" id="overview">
-        <h1>Facebook signed request generator</h1>
-        <p class="lead">Create fb signed requests at your will.</p>
-    </header>
+    <div class="page-header">
+        <h1>Create FB signed requests at will.</h1>
+    </div>
+    <div class="alert-message info">        
+        <p><strong>NOTE:</strong> Your privacy is respected, your secret key is niether stored, nor shared. What you see here is the source that is available at: <a href="">https://github.com/dmportella/Facebook-Sign-Request-Generator</a>.</p>
+    </div>
     <div class="row">
-        <form class="well" action="/" method="post" id="generateSignature">
-            <div class="alert alert-success">
-                <strong>Please note!</strong> Your secret key is not saved or shared with anything to see it for yourself the code is in github, link : <a href="https://github.com/dmportella/Facebook-Sign-Request-Generator">https://github.com/dmportella/Facebook-Sign-Request-Generator</a>.
+        <div class="span12">
+            <form class="well" action="/" method="post" id="generateSignature">
+                <label>App Secret Key</label>
+                <input name="secretKey" id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..." value="<%= secretKey %>"> <span class="help-inline">Don't know what it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
+                <label>Payload</label>
+                <textarea name="payload" class="input-xlarge" id="payload" rows="3" placeholder="{ 'algorithm': 'HMAC-SHA256', payload = 'hello world' }"><%= payload %></textarea> <span class="help-inline">The payload that you wish to sign and encode. This must be a valid json object.</span><br/>
+                </label>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+            <% if(errored) { %>
+            <div class="alert-message error">
+                <strong>FUFU!</strong> <%= jsonPayload %>
             </div>
-            <label>App Secret Key</label>
-            <input name="secretKey" id="secretKey" type="text" class="span3" placeholder="9153441254b5f4e5a03f..." value="<%= secretKey %>"> <span class="help-inline">Don't know where it is? You will find it  <a href="https://developers.facebook.com/apps">here</a>.</span><br/>
-            <label>Payload</label>
-            <textarea name="payload" class="input-xlarge" id="payload" rows="3" placeholder="{ 'algorithm': 'HMAC-SHA256', payload = 'hello world' }"><%= payload %></textarea> <span class="help-inline">The payload you wish to sign and encode, it must be a valid json object.</span><br/>
-            </label>
-            <button type="submit" class="btn">Submit</button>
-        </form>
-        <% if(errored) { %>
-        <div class="alert alert-error">
-            <strong>Oh snap!</strong> <%= jsonPayload %>
-        </div>
-        <% } %>
-        <% if (!errored && jsonPayload) { %>
-        <div class="alert alert-success">
-            <strong>Success!</strong> The signed payload is below.
-        </div>
-        <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span style="color:black">Test against facebook signed request echo tool <a href="http://developers.facebook.com/tools/echo?signed_request=<%= jsonPayload %>">here</a>.</span></li><li class="L1"><span style="color:black;"><%= jsonPayload %></span></li></ol></pre>
-        <% } %>
-        <br/>
-        <div class="alert alert-info">
-            <strong>Json api</strong><br/>
-            <p>You can also call a json service call see the example below.</p>
-            <strong>Request</strong>
-            <div class="well">
-            POST /v1/generate?secretKey=23123213 HTTP/1.1<br/>
-            Content-Type: application/json<br/>
-            Host: fbapp.herokuapp.com<br/>
-            Content-Length: 360<br/>
-            <br/>
-            {<br/>
-               "algorithm": "HMAC-SHA256",<br/>
-               "expires": 1308988800,<br/>
-               "issued_at": 1308985018,<br/>
-               "oauth_token": "111111111111111|2.AQBAttRlLVnwqNPZ.3600.1111111111.1-111111111111111|T49w3BqoZUegypru51Gra70hED8",<br/>
-               "user": {<br/>
-                  "country": "de",<br/>
-                  "locale": "en_US",<br/>
-                  "age": {<br/>
-                     "min": 21<br/>
-                  }<br/>
-               },<br/>
-               "user_id": "111111111111111"<br/>
-            }<br/>
+            <% } %>
+            <% if (!errored && jsonPayload) { %>
+            <div class="alert-message success">
+                <strong>Success!</strong> The signed payload is below.
             </div>
-            <strong>Response</strong>
-            <div class="well">
-            HTTP/1.1 200 OK<br/>
-            Content-Type: application/json<br/>
-            X-Powered-By: Express<br/>
-            Content-Length: 439<br/>
-            Connection: keep-alive<br/>
-            <br/>
-            {<br/>
-            "success" : true,<br/>
-            "signedRequest" : "FjsJSNfbIwjeIYJVGR3AL_CaGzD0EsxYmuqGQ0oRamg.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4c<br/>
-            GlyZXMiOjEzMDg5ODg4MDAsImlzc3VlZF9hdCI6MTMwODk4NTAxOCwib2F1dGhfdG9rZW4iOiIxMTExMTExMTExMTExMTF8Mi5BUUJBd<br/>
-            HRSbExWbndxTlBaLjM2MDAuMTExMTExMTExMS4xLTExMTExMTExMTExMTExMXxUNDl3M0Jxb1pVZWd5cHJ1NTFHcmE3MGhFRDgiLCJ1c<br/>
-            2VyIjp7ImNvdW50cnkiOiJkZSIsImxvY2FsZSI6ImVuX1VTIiwiYWdlIjp7Im1pbiI6MjF9fSwidXNlcl9pZCI6IjExMTExMTExMTExM<br/>
-            TExMSJ9"<br/>
-            }<br/>
+            <pre class="prettyprint linenums"><ol class="linenums"><li class="L0"><span style="color:black">Test this against the Facebook signed request echo tool <a href="http://developers.facebook.com/tools/echo?signed_request=<%= jsonPayload %>">here</a>.</span></li><li class="L1"><span style="color:black;"><%= jsonPayload %></span></li></ol></pre>
+            <% } %>
+        </div>
+        <div class="span6">
+            <div class="alert alert-info">
+                <h3>JSON API</h3>
+                <p>You can also make a JSON service call. See the example below.</p>
+                <h4>Request</h4>
+                <pre class="well">
+POST /v1/generate?secretKey=23123213 HTTP/1.1
+Content-Type: application/json
+Host: fbapp.herokuapp.com
+Content-Length: 360
+{
+    "algorithm": "HMAC-SHA256",
+    "expires": 1308988800,
+    "issued_at": 1308985018
+    "oauth_token": "111111111111111|2.AQBAttRlLVnwqNPZ.3600.1111111111.1-111111111111111|T49w3BqoZUegypru51Gra70hED8",
+    "user": {
+            "country": "de",
+            "locale": "en_US",
+            "age": {
+            "min": 21
+    },
+    "user_id": "111111111111111"
+}
+                </pre>
+                <h4>Response</h4>
+                <pre class="well">
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Powered-By: Express
+Content-Length: 439
+Connection: keep-alive
+{
+    "success" : true,
+    "signedRequest" : "FjsJSNfbIwjeIYJVGR3AL_CaGzD0EsxYmuqGQ0oRamg.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4c                       GlyZXMiOjEzMDg5ODg4MDAsImlzc3VlZF9hdCI6MTMwODk4NTAxOCwib2F1dGhfdG9rZW4iOiIxMTExMTExMTExMTExMTF8Mi5BUUJBd                       HRSbExWbndxTlBaLjM2MDAuMTExMTExMTExMS4xLTExMTExMTExMTExMTExMXxUNDl3M0Jxb1pVZWd5cHJ1NTFHcmE3MGhFRDgiLCJ1c                       2VyIjp7ImNvdW50cnkiOiJkZSIsImxvY2FsZSI6ImVuX1VTIiwiYWdlIjp7Im1pbiI6MjF9fSwidXNlcl9pZCI6IjExMTExMTExMTExMTExMSJ9"
+}
+                </pre>
             </div>
         </div>
     </div>
-    <hr>
-    <footer>
-        <p>&copy; dmportella 2012</p>
-    </footer>
-</div>
